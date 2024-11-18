@@ -18,9 +18,10 @@ describe("TP1 tests", { testIsolation: false }, () => {
     cy.get("p").contains("fake@fakeemail.com");
   });
   it("Asegurate de que haya al menos una imagen visible", () => {
-    //buscamos las imagenes que sean visibles y tengan un recurso específico.
+    //buscamos las imagenes que sean visibles
     cy.get("img.hotel-logoUrl")
       .should("be.visible")
+      //y que tengan un recurso específico.
       .and(($img) => {
         expect($img).to.have.attr("src").and.include("/images/rbp-logo.jpg");
       });
@@ -29,5 +30,10 @@ describe("TP1 tests", { testIsolation: false }, () => {
       .and(($img) => {
         expect($img).to.have.attr("src").and.include("/images/room2.jpg");
       });
+  });
+  it("Confirma que el texto de la descripción del hotel sea el esperado", () => {
+    cy.get("p").contains(
+      "Welcome to Shady Meadows, a delightful Bed & Breakfast nestled in the hills on Newingtonfordburyshire. A place so beautiful you will never want to leave. All our rooms have comfortable beds and we provide breakfast from the locally sourced supermarket. It is a delightful place."
+    );
   });
 });
